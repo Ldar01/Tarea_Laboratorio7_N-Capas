@@ -6,7 +6,9 @@
 </head>
 <body>
 	<form method="post" th:action="@{/save}" th:object="${estudiante}">
-		<h1>Formulario para ingresar estudiante </h1>
+		<h1>Formulario para ingresar/editar estudiante </h1>
+		
+		<input type="hidden" th:field="*{codigoEstudiante}">
 		
 		<span th:errors="*{nombre}" style="color: #FF0000"></span>
 		<label>Nombre: </label><input type="text" th:field="*{nombre}" placeholder="Nombre">
@@ -25,7 +27,7 @@
 		<br>
 		
 		<input type="submit" value="Guardar" >
-		<a href="/listado">Ver Estudiantes</a>
+		<a href="/estudiante">Ver Estudiantes</a>
 	</form>
 </body>
 </html>

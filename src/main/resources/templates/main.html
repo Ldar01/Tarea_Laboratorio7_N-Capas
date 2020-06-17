@@ -26,23 +26,34 @@
 	</table>
 	<br>
 	
-	<h3>Mostrar Estudiante</h3>
+	<h4>Mostrar Estudiante</h3>
 	
 	<form th:action="@{/mostrarEstudiante}" method="post">
 		<label>Buscar por codigo de estudiante:</label> <input type="number" name="codigo"><br>
-		<input type="submit" value="Buscar">
+		<input type="submit" value="Buscar"> 
 	</form>
 	<br>
-	
+	<hr>
+	<h4>Insertar Estudiante</h3>
 	<form th:action="@{/insertarEstudiante}">
 		<input type="submit" value="Insertar nuevo Estudiante">
+	</form>
+	<hr>
+	<br>
+	<h4>Editar Estudiante</h3>
+	<form th:action="@{/editarEstudiante}" method="post">
+		<label>Ingrese codigo de estudiante para editar:</label><input type="number" name="codigo"><br>
+		<input type="submit" value="Editar Estudiante">
 	</form><br>
-	
+	<hr>
+	<h4>Borrar Estudiante</h3>
 	<form th:action="@{/borrarEstudiante}" method= "post">
 	<label>Borrar por codigo de estudiante:</label> <input type="number" name="codigo"><br>
 		<input type="submit" value="Borrar">
 	</form>
+	<hr>
 	<br>
+	<h4>Filtrar Estudiante</h3>
 	<form th:action="@{/filtrar}" method= "post">
 	<label>Ingresar la cadena por la que desea filtrar:</label> <input type="text" name="nombre"><br>
 		<input type="submit" value="Filtrar">

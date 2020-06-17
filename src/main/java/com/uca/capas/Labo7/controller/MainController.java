@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,6 +59,17 @@ public class MainController {
 	
 	}
 	
+	//Editar
+	@RequestMapping(value = "/editarEstudiante", method= RequestMethod.POST)
+	public ModelAndView editar(@RequestParam(value = "codigo") int id) {
+		ModelAndView mav = new ModelAndView();
+		Estudiante estudiante = estudianteService.findOne(id);
+		mav.addObject("estudiante", estudiante);
+		mav.setViewName("agregarEstudiante");		
+		return mav;
+	
+	}
+	
 	@RequestMapping("/save")
 	public ModelAndView guardar(@Valid @ModelAttribute Estudiante estudiante, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
@@ -93,13 +105,21 @@ public class MainController {
 		return mav;
 	}
 	
+	@GetMapping("/insertarEstudiante")
+	public ModelAndView inicio() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("estudiante", new Estudiante());
+		mav.setViewName("agregarEstudiante");
+		return mav;
+	}
+	
 	@PostMapping(value = "/filtrar")
 	public ModelAndView filtro(@RequestParam(value = "nombre") String nombre) {
 		ModelAndView mav = new ModelAndView();
 		List<Estudiante> estudiantes = null;
 		try {
-			estudiantes = estudianteService.startingWith(nombre);
-			//estudiantes = estudianteService.filtrarPor(nombre);
+			//estudiantes = estudianteService.startingWith(nombre);
+			estudiantes = estudianteService.filtrarPor(nombre);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -108,12 +128,6 @@ public class MainController {
 		return mav;
 	}
 	
-	@GetMapping("/insertarEstudiante")
-	public ModelAndView inicio() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("estudiante", new Estudiante());
-		mav.setViewName("agregarEstudiante");
-		return mav;
-	}
+	
 	
 }
